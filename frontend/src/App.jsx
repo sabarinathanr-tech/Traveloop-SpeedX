@@ -21,6 +21,7 @@ import AdminDashboard from "./pages/AdminDashboard";
 import GoaTrip from "./pages/GoaTrip";
 import BangaloreTrip from "./pages/BangaloreTrip";
 import KeralaTrip from "./pages/KeralaTrip";
+import ForgotPassword from "./pages/ForgotPassword";
 
 function App() {
 
@@ -71,6 +72,8 @@ function App() {
       <Route path="/bangalore-trip" element={<BangaloreTrip />} />
 
       <Route path="/kerala-trip" element={<KeralaTrip />} />
+
+      <Route path="/forgot-password" element={<ForgotPassword />} />
 
     </Routes>
   );

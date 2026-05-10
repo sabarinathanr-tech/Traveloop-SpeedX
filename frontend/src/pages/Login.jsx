@@ -6,7 +6,10 @@ function Login() {
   const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
+
   const [password, setPassword] = useState("");
+
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleLogin = async (e) => {
 
@@ -39,8 +42,6 @@ function Login() {
           JSON.stringify(data.user)
         );
 
-        alert("Login successful");
-
         navigate("/dashboard");
 
       } else {
@@ -51,24 +52,21 @@ function Login() {
 
     } catch (error) {
 
-      console.log(error);
-
       alert("Login failed");
-
     }
   };
 
   return (
 
-    <div className="min-h-screen bg-slate-100 flex items-center justify-center p-6">
+    <div className="min-h-screen flex items-center justify-center bg-slate-100 p-6">
 
       <div className="bg-white w-full max-w-md rounded-3xl shadow-xl p-10">
 
-        <h1 className="text-4xl font-bold text-center text-slate-900">
+        <h1 className="text-4xl font-bold text-center mb-3">
           Welcome Back
         </h1>
 
-        <p className="text-center text-slate-500 mt-3 mb-8">
+        <p className="text-center text-slate-500 mb-8">
           Login to continue
         </p>
 
@@ -77,56 +75,63 @@ function Login() {
           className="space-y-6"
         >
 
-          <div>
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+            className="w-full p-4 rounded-2xl border border-slate-300"
+          />
 
-            <label className="block text-sm font-semibold mb-2">
-              Email
-            </label>
-
-            <input
-              type="email"
-              placeholder="Enter your email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-              className="w-full px-5 py-4 rounded-2xl border border-slate-300 outline-none"
-            />
-
-          </div>
-
-          <div>
-
-            <label className="block text-sm font-semibold mb-2">
-              Password
-            </label>
+          <div className="relative">
 
             <input
-              type="password"
-              placeholder="Enter password"
+              type={showPassword ? "text" : "password"}
+              placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
-              className="w-full px-5 py-4 rounded-2xl border border-slate-300 outline-none"
+              className="w-full p-4 rounded-2xl border border-slate-300"
             />
+
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              className="absolute right-4 top-4 text-sm text-slate-500"
+            >
+              {showPassword ? "Hide" : "Show"}
+            </button>
+
+          </div>
+
+          <div className="flex justify-end">
+
+            <Link
+              to="/forgot-password"
+              className="text-sm text-slate-500"
+            >
+              Forgot Password?
+            </Link>
 
           </div>
 
           <button
             type="submit"
-            className="w-full bg-slate-950 text-white py-4 rounded-2xl text-lg font-semibold"
+            className="w-full bg-slate-950 text-white py-4 rounded-2xl"
           >
             Login
           </button>
 
         </form>
 
-        <p className="text-center text-slate-600 mt-8">
+        <p className="text-center mt-8">
 
           Don’t have an account?{" "}
 
           <Link
             to="/signup"
-            className="font-semibold text-slate-900"
+            className="font-semibold"
           >
             Create Account
           </Link>

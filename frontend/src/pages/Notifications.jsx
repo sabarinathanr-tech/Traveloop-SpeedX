@@ -1,58 +1,54 @@
 import Navbar from "../components/Navbar";
 
 function Notifications() {
+
+  const notifications = [
+    {
+      title: "Trip Reminder",
+      message: "Your Goa trip starts tomorrow.",
+    },
+    {
+      title: "Budget Alert",
+      message: "You spent ₹8500 on flights.",
+    },
+    {
+      title: "Weather Update",
+      message: "Heavy rain expected in Kerala.",
+    },
+  ];
+
   return (
+
     <div className="min-h-screen bg-slate-100">
 
       <Navbar />
 
       <div className="p-10">
 
-        <h1 className="text-5xl font-bold text-slate-900">
+        <h1 className="text-5xl font-bold mb-10">
           Notifications
         </h1>
 
-        <p className="text-slate-500 mt-3 text-xl">
-          Stay updated with your trips.
-        </p>
+        <div className="space-y-6">
 
-        <div className="space-y-6 mt-12">
+          {notifications.map((item, index) => (
 
-          <div className="bg-white rounded-3xl shadow-md p-8">
+            <div
+              key={index}
+              className="bg-white p-8 rounded-3xl shadow-lg"
+            >
 
-            <h2 className="text-2xl font-bold">
-              Flight Reminder
-            </h2>
+              <h2 className="text-2xl font-bold mb-3">
+                {item.title}
+              </h2>
 
-            <p className="text-slate-500 mt-3 text-lg">
-              Your Goa flight departs tomorrow at 8:00 AM.
-            </p>
+              <p className="text-slate-500 text-lg">
+                {item.message}
+              </p>
 
-          </div>
+            </div>
 
-          <div className="bg-white rounded-3xl shadow-md p-8">
-
-            <h2 className="text-2xl font-bold">
-              Budget Alert
-            </h2>
-
-            <p className="text-slate-500 mt-3 text-lg">
-              You already used 70% of your budget.
-            </p>
-
-          </div>
-
-          <div className="bg-white rounded-3xl shadow-md p-8">
-
-            <h2 className="text-2xl font-bold">
-              Weather Update
-            </h2>
-
-            <p className="text-slate-500 mt-3 text-lg">
-              Rain expected during your Kerala trip.
-            </p>
-
-          </div>
+          ))}
 
         </div>
 

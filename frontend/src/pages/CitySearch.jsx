@@ -1,94 +1,172 @@
+import { useState } from "react";
 import Navbar from "../components/Navbar";
 
-function CitySearch() {
+function Profile() {
+
+  const [isEditing, setIsEditing] = useState(false);
+
+  const [name, setName] = useState("Sabarinathan");
+
+  const [email, setEmail] = useState(
+    "sabarinathanr.tech@gmail.com"
+  );
+
+  const [bio, setBio] = useState(
+    "AI Travel Explorer"
+  );
+
+  const saveProfile = () => {
+
+    setIsEditing(false);
+
+    alert("Profile updated successfully");
+  };
+
   return (
+
     <div className="min-h-screen bg-slate-100">
 
       <Navbar />
 
       <div className="p-10">
 
-        <h1 className="text-5xl font-bold text-slate-900">
-          Explore Cities
-        </h1>
+        <div className="max-w-5xl mx-auto bg-white rounded-3xl shadow-xl p-10">
 
-        <p className="text-slate-500 mt-3 text-xl">
-          Search destinations and attractions.
-        </p>
+          <div className="flex items-center justify-between mb-10">
 
-        <div className="bg-white rounded-3xl shadow-md p-8 mt-10">
+            <div className="flex items-center gap-8">
 
-          <input
-            type="text"
-            placeholder="Search cities..."
-            className="w-full border border-slate-300 rounded-2xl px-5 py-4 text-lg outline-none"
-          />
+              <div className="h-40 w-40 rounded-full bg-slate-950"></div>
 
-        </div>
+              <div>
 
-        <div className="grid md:grid-cols-3 gap-8 mt-12">
+                <h1 className="text-5xl font-bold">
+                  {name}
+                </h1>
 
-          <div className="bg-white rounded-3xl shadow-md overflow-hidden">
+                <p className="text-slate-500 text-2xl mt-3">
+                  {bio}
+                </p>
 
-            <img
-              src="https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?q=80&w=1200"
-              alt="Goa"
-              className="h-52 w-full object-cover"
+              </div>
+
+            </div>
+
+            {!isEditing ? (
+
+              <button
+                onClick={() => setIsEditing(true)}
+                className="bg-slate-950 text-white px-8 py-4 rounded-2xl"
+              >
+                Edit Profile
+              </button>
+
+            ) : (
+
+              <button
+                onClick={saveProfile}
+                className="bg-green-600 text-white px-8 py-4 rounded-2xl"
+              >
+                Save
+              </button>
+
+            )}
+
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+            <div>
+
+              <label className="block text-xl font-semibold mb-3">
+                Full Name
+              </label>
+
+              <input
+                type="text"
+                value={name}
+                disabled={!isEditing}
+                onChange={(e) =>
+                  setName(e.target.value)
+                }
+                className="w-full p-4 rounded-2xl border border-slate-300"
+              />
+
+            </div>
+
+            <div>
+
+              <label className="block text-xl font-semibold mb-3">
+                Email
+              </label>
+
+              <input
+                type="email"
+                value={email}
+                disabled={!isEditing}
+                onChange={(e) =>
+                  setEmail(e.target.value)
+                }
+                className="w-full p-4 rounded-2xl border border-slate-300"
+              />
+
+            </div>
+
+          </div>
+
+          <div className="mt-8">
+
+            <label className="block text-xl font-semibold mb-3">
+              Bio
+            </label>
+
+            <textarea
+              rows="4"
+              value={bio}
+              disabled={!isEditing}
+              onChange={(e) =>
+                setBio(e.target.value)
+              }
+              className="w-full p-4 rounded-2xl border border-slate-300"
             />
 
-            <div className="p-6">
+          </div>
 
-              <h2 className="text-3xl font-bold">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10">
+
+            <div className="bg-slate-100 p-6 rounded-2xl">
+
+              <h2 className="text-slate-500 mb-3">
+                Trips Completed
+              </h2>
+
+              <h3 className="text-4xl font-bold">
+                12
+              </h3>
+
+            </div>
+
+            <div className="bg-slate-100 p-6 rounded-2xl">
+
+              <h2 className="text-slate-500 mb-3">
+                Favorite Destination
+              </h2>
+
+              <h3 className="text-2xl font-bold">
                 Goa
-              </h2>
-
-              <p className="text-slate-500 mt-3 text-lg">
-                Beaches • Cafes • Nightlife
-              </p>
+              </h3>
 
             </div>
 
-          </div>
+            <div className="bg-slate-100 p-6 rounded-2xl">
 
-          <div className="bg-white rounded-3xl shadow-md overflow-hidden">
-
-            <img
-              src="https://images.unsplash.com/photo-1596176530529-78163a4f7af2?q=80&w=1200"
-              alt="Bangalore"
-              className="h-52 w-full object-cover"
-            />
-
-            <div className="p-6">
-
-              <h2 className="text-3xl font-bold">
-                Bangalore
+              <h2 className="text-slate-500 mb-3">
+                Budget Managed
               </h2>
 
-              <p className="text-slate-500 mt-3 text-lg">
-                Tech • Food • Parks
-              </p>
-
-            </div>
-
-          </div>
-
-          <div className="bg-white rounded-3xl shadow-md overflow-hidden">
-
-            <img
-              src="https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?q=80&w=1200"
-              alt="Kerala"
-              className="h-52 w-full object-cover"
-            />
-
-            <div className="p-6">
-
-              <h2 className="text-3xl font-bold">
-                Kerala
-              </h2>
-
-              <p className="text-slate-500 mt-3 text-lg">
-                Nature • Hills • Backwaters
-              </p>
+              <h3 className="text-3xl font-bold">
+                ₹1.2L
+              </h3>
 
             </div>
 
@@ -102,4 +180,4 @@ function CitySearch() {
   );
 }
 
-export default CitySearch;
+export default Profile;
