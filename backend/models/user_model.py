@@ -1,18 +1,12 @@
-from datetime import datetime
-from flask_sqlalchemy import SQLAlchemy
+from config import db
 
-db = SQLAlchemy()
 
 class User(db.Model):
-    __tablename__ = 'users'
 
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(80), unique=True, nullable=False)
+
+    name = db.Column(db.String(100), nullable=False)
+
     email = db.Column(db.String(120), unique=True, nullable=False)
-    password_hash = db.Column(db.String(256), nullable=False)
-    created_at = db.Column(db.DateTime, default=datetime.utcnow)
 
-    trips = db.relationship('Trip', backref='user', lazy=True)
-
-    def __repr__(self):
-        return f'<User {self.username}>'
+    password = db.Column(db.String(300), nullable=False)

@@ -13,7 +13,7 @@ function Dashboard() {
 
           <div>
 
-            <h1 className="text-6xl font-bold text-slate-900">
+            <h1 className="text-4xl font-bold text-slate-900">
               Welcome Back 👋
             </h1>
 
@@ -25,46 +25,46 @@ function Dashboard() {
 
           <Link
             to="/create-trip"
-            className="bg-slate-950 text-white px-10 py-5 rounded-3xl text-2xl font-semibold"
+            className="bg-slate-950 text-white px-10 py-5 rounded-2xl text-2xl font-semibold"
           >
             + Create Trip
           </Link>
 
         </div>
 
-        <div className="grid md:grid-cols-3 gap-10 mt-14">
+        <div className="grid md:grid-cols-3 gap-6 mt-14">
 
-          <div className="bg-white rounded-3xl shadow-md p-10">
+          <div className="bg-white rounded-2xl shadow-md p-10">
 
             <h2 className="text-slate-500 text-2xl">
               Total Trips
             </h2>
 
-            <p className="text-7xl font-bold mt-8">
+            <p className="text-5xl font-bold mt-8">
               12
             </p>
 
           </div>
 
-          <div className="bg-white rounded-3xl shadow-md p-10">
+          <div className="bg-white rounded-2xl shadow-md p-10">
 
             <h2 className="text-slate-500 text-2xl">
               Upcoming Trips
             </h2>
 
-            <p className="text-7xl font-bold mt-8">
+            <p className="text-5xl font-bold mt-8">
               4
             </p>
 
           </div>
 
-          <div className="bg-white rounded-3xl shadow-md p-10">
+          <div className="bg-white rounded-2xl shadow-md p-10">
 
             <h2 className="text-slate-500 text-2xl">
               Total Budget
             </h2>
 
-            <p className="text-7xl font-bold mt-8">
+            <p className="text-5xl font-bold mt-8">
               ₹48K
             </p>
 
@@ -87,9 +87,9 @@ function Dashboard() {
 
         </div>
 
-        <div className="grid md:grid-cols-3 gap-10 mt-10">
+        <div className="grid md:grid-cols-3 gap-6 mt-10">
 
-          <div className="bg-white rounded-3xl shadow-md p-8">
+          <div className="bg-white rounded-2xl shadow-md p-8">
 
             <h2 className="text-4xl font-bold">
               Goa Escape
@@ -112,7 +112,7 @@ function Dashboard() {
 
           </div>
 
-          <div className="bg-white rounded-3xl shadow-md p-8">
+          <div className="bg-white rounded-2xl shadow-md p-8">
 
             <h2 className="text-4xl font-bold">
               Bangalore Weekend
@@ -135,7 +135,7 @@ function Dashboard() {
 
           </div>
 
-          <div className="bg-white rounded-3xl shadow-md p-8">
+          <div className="bg-white rounded-2xl shadow-md p-8">
 
             <h2 className="text-4xl font-bold">
               Kerala Ride

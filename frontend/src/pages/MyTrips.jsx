@@ -1,5 +1,5 @@
-import Navbar from "../components/Navbar";
 import { Link } from "react-router-dom";
+import Navbar from "../components/Navbar";
 
 function MyTrips() {
   return (
@@ -7,40 +7,41 @@ function MyTrips() {
 
       <Navbar />
 
-      <div className="p-10">
+      <div className="p-6">
 
         <div className="flex justify-between items-center">
 
           <div>
 
-            <h1 className="text-5xl font-bold text-slate-900">
+            <h1 className="text-4xl font-bold text-slate-900">
               My Trips
             </h1>
 
-            <p className="text-slate-500 mt-3 text-xl">
+            <p className="text-slate-500 mt-2">
               Manage all your travel plans.
             </p>
 
           </div>
 
-          <Link
-            to="/create-trip"
-            className="bg-slate-950 text-white px-8 py-4 rounded-2xl text-xl"
-          >
-            + New Trip
+          <Link to="/create-trip">
+            <button className="bg-slate-950 text-white px-6 py-3 rounded-2xl">
+              + New Trip
+            </button>
           </Link>
 
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8 mt-12">
+        <div className="grid md:grid-cols-3 gap-6 mt-10">
 
-          <div className="bg-white rounded-3xl shadow-md p-8">
+          {/* GOA */}
+
+          <div className="bg-white rounded-2xl shadow-md p-6">
 
             <h2 className="text-3xl font-bold">
               Goa Escape
             </h2>
 
-            <p className="text-slate-500 text-xl mt-4">
+            <p className="text-slate-500 mt-4">
               12 May - 18 May
             </p>
 
@@ -48,22 +49,23 @@ function MyTrips() {
               ₹18,000
             </p>
 
-            <Link
-              to="/itinerary"
-              className="inline-block mt-8 bg-slate-950 text-white px-5 py-3 rounded-2xl"
-            >
-              Open Trip
+            <Link to="/goa-trip">
+              <button className="bg-slate-950 text-white px-6 py-3 rounded-2xl mt-8">
+                Open Trip
+              </button>
             </Link>
 
           </div>
 
-          <div className="bg-white rounded-3xl shadow-md p-8">
+          {/* BANGALORE */}
+
+          <div className="bg-white rounded-2xl shadow-md p-6">
 
             <h2 className="text-3xl font-bold">
               Bangalore Weekend
             </h2>
 
-            <p className="text-slate-500 text-xl mt-4">
+            <p className="text-slate-500 mt-4">
               22 May - 25 May
             </p>
 
@@ -71,22 +73,23 @@ function MyTrips() {
               ₹8,500
             </p>
 
-            <Link
-              to="/itinerary"
-              className="inline-block mt-8 bg-slate-950 text-white px-5 py-3 rounded-2xl"
-            >
-              Open Trip
+            <Link to="/bangalore-trip">
+              <button className="bg-slate-950 text-white px-6 py-3 rounded-2xl mt-8">
+                Open Trip
+              </button>
             </Link>
 
           </div>
 
-          <div className="bg-white rounded-3xl shadow-md p-8">
+          {/* KERALA */}
+
+          <div className="bg-white rounded-2xl shadow-md p-6">
 
             <h2 className="text-3xl font-bold">
               Kerala Ride
             </h2>
 
-            <p className="text-slate-500 text-xl mt-4">
+            <p className="text-slate-500 mt-4">
               1 June - 7 June
             </p>
 
@@ -94,11 +97,10 @@ function MyTrips() {
               ₹22,000
             </p>
 
-            <Link
-              to="/itinerary"
-              className="inline-block mt-8 bg-slate-950 text-white px-5 py-3 rounded-2xl"
-            >
-              Open Trip
+            <Link to="/kerala-trip">
+              <button className="bg-slate-950 text-white px-6 py-3 rounded-2xl mt-8">
+                Open Trip
+              </button>
             </Link>
 
           </div>

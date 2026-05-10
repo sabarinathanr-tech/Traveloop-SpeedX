@@ -1,12 +1,18 @@
-from flask import Blueprint, request, jsonify
+from flask import Blueprint, jsonify
 
-activity_bp = Blueprint('activity', __name__)
+activity_bp = Blueprint("activity_bp", __name__)
 
-@activity_bp.route('/activities', methods=['GET'])
+
+@activity_bp.route("/activities", methods=["GET"])
 def get_activities():
-    return jsonify({'message': 'List activities'})
 
-@activity_bp.route('/activities', methods=['POST'])
-def create_activity():
-    data = request.get_json() or {}
-    return jsonify({'message': 'Create activity', 'data': data})
+    activities = [
+        "Beach Walk",
+        "Water Sports",
+        "Temple Visit",
+        "Cafe Hopping",
+        "Trekking",
+        "Night Market"
+    ]
+
+    return jsonify(activities)

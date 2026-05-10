@@ -18,12 +18,19 @@ import PublicTrip from "./pages/PublicTrip";
 import Recommendations from "./pages/Recommendations";
 import Settings from "./pages/Settings";
 import AdminDashboard from "./pages/AdminDashboard";
+import GoaTrip from "./pages/GoaTrip";
+import BangaloreTrip from "./pages/BangaloreTrip";
+import KeralaTrip from "./pages/KeralaTrip";
 
 function App() {
+
   return (
+
     <Routes>
 
       <Route path="/" element={<Login />} />
+
+      <Route path="/login" element={<Login />} />
 
       <Route path="/signup" element={<Signup />} />
 
@@ -58,6 +65,12 @@ function App() {
       <Route path="/settings" element={<Settings />} />
 
       <Route path="/admin" element={<AdminDashboard />} />
+
+      <Route path="/goa-trip" element={<GoaTrip />} />
+
+      <Route path="/bangalore-trip" element={<BangaloreTrip />} />
+
+      <Route path="/kerala-trip" element={<KeralaTrip />} />
 
     </Routes>
   );

@@ -1,12 +1,13 @@
-from flask import Blueprint, request, jsonify
+from flask import Blueprint, jsonify
 
-budget_bp = Blueprint('budget', __name__)
+budget_bp = Blueprint("budget_bp", __name__)
 
-@budget_bp.route('/budgets', methods=['GET'])
-def get_budgets():
-    return jsonify({'message': 'List budgets'})
 
-@budget_bp.route('/budgets', methods=['POST'])
-def create_budget():
-    data = request.get_json() or {}
-    return jsonify({'message': 'Create budget', 'data': data})
+@budget_bp.route("/budget-summary", methods=["GET"])
+def budget_summary():
+
+    return jsonify({
+        "total_budget": 48000,
+        "spent": 26000,
+        "remaining": 22000
+    })
