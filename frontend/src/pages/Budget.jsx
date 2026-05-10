@@ -3,45 +3,60 @@ import Navbar from "../components/Navbar";
 
 function Budget() {
 
-  const [trips, setTrips] = useState([
-    {
-      name: "Goa Escape",
-      budget: 50000,
-      spent: 20500,
-    },
-    {
-      name: "Bangalore Weekend",
-      budget: 25000,
-      spent: 12000,
-    },
-    {
-      name: "Kerala Ride",
-      budget: 40000,
-      spent: 18500,
-    },
-  ]);
+  const trips =
+    JSON.parse(localStorage.getItem("trips")) || [];
 
-  const [selectedTrip, setSelectedTrip] = useState(0);
+  const [selectedTrip, setSelectedTrip] =
+    useState(0);
 
-  const [expense, setExpense] = useState("");
+  const [expense, setExpense] =
+    useState("");
+
+  const [records, setRecords] =
+    useState(
+      JSON.parse(
+        localStorage.getItem("expenses")
+      ) || []
+    );
 
   const currentTrip = trips[selectedTrip];
-
-  const remaining =
-    currentTrip.budget - currentTrip.spent;
 
   const addExpense = () => {
 
     if (!expense) return;
 
-    const updatedTrips = [...trips];
+    const newExpense = {
+      tripId: currentTrip.id,
+      amount: Number(expense),
+      date: new Date().toLocaleDateString(),
+    };
 
-    updatedTrips[selectedTrip].spent += Number(expense);
+    const updated = [...records, newExpense];
 
-    setTrips(updatedTrips);
+    setRecords(updated);
+
+    localStorage.setItem(
+      "expenses",
+      JSON.stringify(updated)
+    );
 
     setExpense("");
+
   };
+
+  const totalSpent = records
+    .filter(
+      (item) =>
+        item.tripId === currentTrip?.id
+    )
+    .reduce(
+      (acc, item) => acc + item.amount,
+      0
+    );
+
+  const remaining =
+    Number(currentTrip?.budget || 0) -
+    totalSpent;
 
   return (
 
@@ -51,16 +66,16 @@ function Budget() {
 
       <div className="p-10">
 
-        <div className="flex items-center justify-between mb-10">
+        <div className="flex justify-between items-center mb-10">
 
           <div>
 
-            <h1 className="text-5xl font-bold">
+            <h1 className="text-6xl font-bold">
               Budget Planner
             </h1>
 
-            <p className="text-slate-500 mt-3 text-xl">
-              Manage trip-wise expenses.
+            <p className="text-slate-500 text-2xl mt-3">
+              Track expenses trip-wise.
             </p>
 
           </div>
@@ -70,16 +85,16 @@ function Budget() {
             onChange={(e) =>
               setSelectedTrip(Number(e.target.value))
             }
-            className="p-4 rounded-2xl border border-slate-300"
+            className="border border-slate-300 p-4 rounded-2xl"
           >
 
             {trips.map((trip, index) => (
 
               <option
-                key={index}
+                key={trip.id}
                 value={index}
               >
-                {trip.name}
+                {trip.destination}
               </option>
 
             ))}
@@ -88,39 +103,39 @@ function Budget() {
 
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-10">
+        <div className="grid md:grid-cols-3 gap-8 mb-10">
 
           <div className="bg-white p-8 rounded-3xl shadow-lg">
 
-            <p className="text-slate-500 text-xl mb-3">
+            <p className="text-slate-500 text-2xl">
               Total Budget
             </p>
 
-            <h2 className="text-5xl font-bold">
-              ₹{currentTrip.budget}
+            <h2 className="text-5xl font-bold mt-4">
+              ₹{currentTrip?.budget}
             </h2>
 
           </div>
 
           <div className="bg-white p-8 rounded-3xl shadow-lg">
 
-            <p className="text-slate-500 text-xl mb-3">
+            <p className="text-slate-500 text-2xl">
               Total Spent
             </p>
 
-            <h2 className="text-5xl font-bold text-red-500">
-              ₹{currentTrip.spent}
+            <h2 className="text-5xl font-bold mt-4 text-red-500">
+              ₹{totalSpent}
             </h2>
 
           </div>
 
           <div className="bg-white p-8 rounded-3xl shadow-lg">
 
-            <p className="text-slate-500 text-xl mb-3">
+            <p className="text-slate-500 text-2xl">
               Remaining
             </p>
 
-            <h2 className="text-5xl font-bold text-green-600">
+            <h2 className="text-5xl font-bold mt-4 text-green-600">
               ₹{remaining}
             </h2>
 
@@ -128,7 +143,7 @@ function Budget() {
 
         </div>
 
-        <div className="bg-white p-8 rounded-3xl shadow-lg">
+        <div className="bg-white p-8 rounded-3xl shadow-lg mb-10">
 
           <h2 className="text-3xl font-bold mb-6">
             Add Expense
@@ -143,7 +158,7 @@ function Budget() {
               onChange={(e) =>
                 setExpense(e.target.value)
               }
-              className="flex-1 p-4 rounded-2xl border border-slate-300"
+              className="flex-1 border border-slate-300 p-4 rounded-2xl"
             />
 
             <button
@@ -152,6 +167,50 @@ function Budget() {
             >
               Add
             </button>
+
+          </div>
+
+        </div>
+
+        <div className="bg-white p-8 rounded-3xl shadow-lg">
+
+          <h2 className="text-3xl font-bold mb-6">
+            Expense Records
+          </h2>
+
+          <div className="space-y-4">
+
+            {records
+              .filter(
+                (item) =>
+                  item.tripId === currentTrip?.id
+              )
+              .map((item, index) => (
+
+                <div
+                  key={index}
+                  className="flex justify-between border-b pb-4"
+                >
+
+                  <p className="text-xl">
+                    Expense
+                  </p>
+
+                  <div className="text-right">
+
+                    <p className="font-bold text-xl">
+                      ₹{item.amount}
+                    </p>
+
+                    <p className="text-slate-500">
+                      {item.date}
+                    </p>
+
+                  </div>
+
+                </div>
+
+              ))}
 
           </div>
 

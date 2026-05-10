@@ -1,26 +1,130 @@
 import { useState } from "react";
 import Navbar from "../components/Navbar";
 
-function Profile() {
+function CitySearch() {
 
-  const [isEditing, setIsEditing] = useState(false);
+  const [search, setSearch] = useState("");
 
-  const [name, setName] = useState("Sabarinathan");
+  const cities = [
 
-  const [email, setEmail] = useState(
-    "sabarinathanr.tech@gmail.com"
+    {
+      name: "Goa",
+      image:
+        "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2",
+      link:
+        "https://www.goatourism.gov.in",
+    },
+
+    {
+      name: "Bangalore",
+      image:
+        "https://images.unsplash.com/photo-1596176530529-78163a4f7af2",
+      link:
+        "https://www.karnatakatourism.org",
+    },
+
+    {
+      name: "Kerala",
+      image:
+        "https://images.unsplash.com/photo-1602216056096-3b40cc0c9944",
+      link:
+        "https://www.keralatourism.org",
+    },
+
+    {
+      name: "Chennai",
+      image:
+        "https://images.unsplash.com/photo-1566552881560-0be862a7c445",
+      link:
+        "https://www.tamilnadutourism.tn.gov.in",
+    },
+
+    {
+      name: "Mumbai",
+      image:
+        "https://images.unsplash.com/photo-1529253355930-ddbe423a2ac7",
+      link:
+        "https://maharashtratourism.gov.in",
+    },
+
+    {
+      name: "Delhi",
+      image:
+        "https://images.unsplash.com/photo-1587474260584-136574528ed5",
+      link:
+        "https://www.incredibleindia.org",
+    },
+
+    {
+      name: "Hyderabad",
+      image:
+        "https://images.unsplash.com/photo-1570168007204-dfb528c6958f",
+      link:
+        "https://tourism.telangana.gov.in",
+    },
+
+    {
+      name: "Dubai",
+      image:
+        "https://images.unsplash.com/photo-1512453979798-5ea266f8880c",
+      link:
+        "https://www.visitdubai.com",
+    },
+
+    {
+      name: "Paris",
+      image:
+        "https://images.unsplash.com/photo-1502602898657-3e91760cbb34",
+      link:
+        "https://parisjetaime.com/eng",
+    },
+
+    {
+      name: "Tokyo",
+      image:
+        "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf",
+      link:
+        "https://www.gotokyo.org/en",
+    },
+
+    {
+      name: "Singapore",
+      image:
+        "https://images.unsplash.com/photo-1525625293386-3f8f99389edd",
+      link:
+        "https://www.visitsingapore.com",
+    },
+
+    {
+      name: "London",
+      image:
+        "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad",
+      link:
+        "https://visitlondon.com",
+    },
+
+  ];
+
+  const filteredCities = cities.filter((city) =>
+    city.name
+      .toLowerCase()
+      .includes(search.toLowerCase())
   );
 
-  const [bio, setBio] = useState(
-    "AI Travel Explorer"
-  );
-
-  const saveProfile = () => {
-
-    setIsEditing(false);
-
-    alert("Profile updated successfully");
-  };
+  const dynamicCity =
+    search &&
+    !cities.some(
+      (city) =>
+        city.name.toLowerCase() ===
+        search.toLowerCase()
+    )
+      ? {
+          name: search,
+          image:
+            "https://images.unsplash.com/photo-1507525428034-b723cf961d3e",
+          link: `https://www.tripadvisor.com/Search?q=${search}`,
+        }
+      : null;
 
   return (
 
@@ -30,154 +134,110 @@ function Profile() {
 
       <div className="p-10">
 
-        <div className="max-w-5xl mx-auto bg-white rounded-3xl shadow-xl p-10">
+        <h1 className="text-6xl font-bold mb-8">
+          Discover Cities
+        </h1>
 
-          <div className="flex items-center justify-between mb-10">
+        <input
+          type="text"
+          placeholder="Search any city..."
+          value={search}
+          onChange={(e) =>
+            setSearch(e.target.value)
+          }
+          className="w-full p-5 rounded-3xl border border-slate-300 text-xl mb-10"
+        />
 
-            <div className="flex items-center gap-8">
+        <div className="grid md:grid-cols-3 gap-8">
 
-              <div className="h-40 w-40 rounded-full bg-slate-950"></div>
+          {filteredCities.map((city, index) => (
 
-              <div>
+            <div
+              key={index}
+              className="bg-white rounded-3xl overflow-hidden shadow-lg hover:scale-105 transition duration-300"
+            >
 
-                <h1 className="text-5xl font-bold">
-                  {name}
-                </h1>
+              <img
+                src={city.image}
+                alt={city.name}
+                className="h-72 w-full object-cover"
+              />
 
-                <p className="text-slate-500 text-2xl mt-3">
-                  {bio}
+              <div className="p-6">
+
+                <h2 className="text-4xl font-bold">
+                  {city.name}
+                </h2>
+
+                <p className="text-slate-500 text-xl mt-4">
+                  Explore attractions, food,
+                  culture and tourism spots.
                 </p>
+
+                <button
+                  onClick={() =>
+                    window.open(
+                      city.link,
+                      "_blank"
+                    )
+                  }
+                  className="mt-6 bg-slate-950 text-white px-6 py-3 rounded-2xl text-lg"
+                >
+                  Explore City
+                </button>
 
               </div>
 
             </div>
 
-            {!isEditing ? (
+          ))}
 
-              <button
-                onClick={() => setIsEditing(true)}
-                className="bg-slate-950 text-white px-8 py-4 rounded-2xl"
-              >
-                Edit Profile
-              </button>
+          {dynamicCity && (
 
-            ) : (
+            <div className="bg-white rounded-3xl overflow-hidden shadow-lg">
 
-              <button
-                onClick={saveProfile}
-                className="bg-green-600 text-white px-8 py-4 rounded-2xl"
-              >
-                Save
-              </button>
-
-            )}
-
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-
-            <div>
-
-              <label className="block text-xl font-semibold mb-3">
-                Full Name
-              </label>
-
-              <input
-                type="text"
-                value={name}
-                disabled={!isEditing}
-                onChange={(e) =>
-                  setName(e.target.value)
-                }
-                className="w-full p-4 rounded-2xl border border-slate-300"
+              <img
+                src={dynamicCity.image}
+                alt={dynamicCity.name}
+                className="h-72 w-full object-cover"
               />
 
-            </div>
+              <div className="p-6">
 
-            <div>
+                <h2 className="text-4xl font-bold">
+                  {dynamicCity.name}
+                </h2>
 
-              <label className="block text-xl font-semibold mb-3">
-                Email
-              </label>
+                <p className="text-slate-500 text-xl mt-4">
+                  Explore tourism details and
+                  attractions.
+                </p>
 
-              <input
-                type="email"
-                value={email}
-                disabled={!isEditing}
-                onChange={(e) =>
-                  setEmail(e.target.value)
-                }
-                className="w-full p-4 rounded-2xl border border-slate-300"
-              />
+                <button
+                  onClick={() =>
+                    window.open(
+                      dynamicCity.link,
+                      "_blank"
+                    )
+                  }
+                  className="mt-6 bg-slate-950 text-white px-6 py-3 rounded-2xl text-lg"
+                >
+                  Explore City
+                </button>
 
-            </div>
-
-          </div>
-
-          <div className="mt-8">
-
-            <label className="block text-xl font-semibold mb-3">
-              Bio
-            </label>
-
-            <textarea
-              rows="4"
-              value={bio}
-              disabled={!isEditing}
-              onChange={(e) =>
-                setBio(e.target.value)
-              }
-              className="w-full p-4 rounded-2xl border border-slate-300"
-            />
-
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10">
-
-            <div className="bg-slate-100 p-6 rounded-2xl">
-
-              <h2 className="text-slate-500 mb-3">
-                Trips Completed
-              </h2>
-
-              <h3 className="text-4xl font-bold">
-                12
-              </h3>
+              </div>
 
             </div>
 
-            <div className="bg-slate-100 p-6 rounded-2xl">
-
-              <h2 className="text-slate-500 mb-3">
-                Favorite Destination
-              </h2>
-
-              <h3 className="text-2xl font-bold">
-                Goa
-              </h3>
-
-            </div>
-
-            <div className="bg-slate-100 p-6 rounded-2xl">
-
-              <h2 className="text-slate-500 mb-3">
-                Budget Managed
-              </h2>
-
-              <h3 className="text-3xl font-bold">
-                ₹1.2L
-              </h3>
-
-            </div>
-
-          </div>
+          )}
 
         </div>
 
       </div>
 
     </div>
+
   );
 }
 
-export default Profile;
+export default CitySearch;
