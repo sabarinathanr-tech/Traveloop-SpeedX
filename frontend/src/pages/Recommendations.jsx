@@ -1,6 +1,6 @@
 import Navbar from "../components/Navbar";
 
-function PublicTrip() {
+function Recommendations() {
   return (
     <div className="min-h-screen bg-slate-100">
 
@@ -9,11 +9,11 @@ function PublicTrip() {
       <div className="p-10">
 
         <h1 className="text-5xl font-bold text-slate-900">
-          Public Trips
+          AI Recommendations
         </h1>
 
         <p className="text-slate-500 text-xl mt-3">
-          Explore journeys shared by travelers.
+          Smart travel suggestions based on your interests.
         </p>
 
         <div className="grid md:grid-cols-3 gap-8 mt-12">
@@ -21,15 +21,15 @@ function PublicTrip() {
           <div className="bg-white rounded-3xl shadow-md p-8">
 
             <h2 className="text-3xl font-bold">
-              Goa Party Trip
+              Goa Escape
             </h2>
 
             <p className="text-slate-500 mt-4 text-lg">
-              Shared by Rahul
+              Best for beaches and nightlife.
             </p>
 
             <button className="bg-slate-950 text-white px-6 py-3 rounded-2xl mt-8">
-              View Trip
+              Explore
             </button>
 
           </div>
@@ -37,15 +37,15 @@ function PublicTrip() {
           <div className="bg-white rounded-3xl shadow-md p-8">
 
             <h2 className="text-3xl font-bold">
-              Kerala Nature Tour
+              Kerala Nature
             </h2>
 
             <p className="text-slate-500 mt-4 text-lg">
-              Shared by Priya
+              Relaxing backwaters and greenery.
             </p>
 
             <button className="bg-slate-950 text-white px-6 py-3 rounded-2xl mt-8">
-              View Trip
+              Explore
             </button>
 
           </div>
@@ -53,15 +53,15 @@ function PublicTrip() {
           <div className="bg-white rounded-3xl shadow-md p-8">
 
             <h2 className="text-3xl font-bold">
-              Bangalore Food Hunt
+              Manali Adventure
             </h2>
 
             <p className="text-slate-500 mt-4 text-lg">
-              Shared by Arjun
+              Trekking and mountain activities.
             </p>
 
             <button className="bg-slate-950 text-white px-6 py-3 rounded-2xl mt-8">
-              View Trip
+              Explore
             </button>
 
           </div>
@@ -74,4 +74,4 @@ function PublicTrip() {
   );
 }
 
-export default PublicTrip;
+export default Recommendations;

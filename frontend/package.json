@@ -2,10 +2,12 @@
   "name": "traveloop-speedx-frontend",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
+    "dev": "vite --host",
+    "build": "vite build --mode production",
+    "preview": "vite preview --host",
+    "build:analyze": "vite build --mode analyze"
   },
   "dependencies": {
     "axios": "^1.16.0",
@@ -14,7 +16,12 @@
     "react-router-dom": "^7.15.0"
   },
   "devDependencies": {
+    "@tailwindcss/vite": "^4.3.0",
     "@vitejs/plugin-react": "^6.0.1",
+    "autoprefixer": "^10.5.0",
+    "esbuild": "^0.28.0",
+    "postcss": "^8.5.14",
+    "tailwindcss": "^3.4.3",
     "vite": "^8.0.11"
   }
 }

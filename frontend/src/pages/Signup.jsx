@@ -1,10 +1,10 @@
 import { useNavigate, Link } from "react-router-dom";
 
-function Login() {
+function Signup() {
 
   const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  const handleSignup = (e) => {
     e.preventDefault();
 
     navigate("/dashboard");
@@ -16,17 +16,32 @@ function Login() {
       <div className="bg-white w-full max-w-md rounded-3xl shadow-xl p-10">
 
         <h1 className="text-5xl font-bold text-center text-slate-900">
-          Traveloop
+          Create Account
         </h1>
 
         <p className="text-center text-slate-500 mt-3">
-          Smart AI Travel Planner
+          Join Traveloop today
         </p>
 
         <form
-          onSubmit={handleLogin}
+          onSubmit={handleSignup}
           className="mt-10 space-y-6"
         >
+
+          <div>
+
+            <label className="text-slate-700 font-semibold">
+              Full Name
+            </label>
+
+            <input
+              type="text"
+              required
+              placeholder="Enter your full name"
+              className="w-full border border-slate-300 rounded-2xl px-5 py-4 mt-2 outline-none focus:border-slate-950"
+            />
+
+          </div>
 
           <div>
 
@@ -52,7 +67,7 @@ function Login() {
             <input
               type="password"
               required
-              placeholder="Enter your password"
+              placeholder="Create password"
               className="w-full border border-slate-300 rounded-2xl px-5 py-4 mt-2 outline-none focus:border-slate-950"
             />
 
@@ -62,20 +77,20 @@ function Login() {
             type="submit"
             className="w-full bg-slate-950 text-white py-4 rounded-2xl text-lg font-semibold hover:bg-slate-800"
           >
-            Sign In
+            Create Account
           </button>
 
         </form>
 
         <p className="text-center text-slate-600 mt-8">
 
-          Don’t have an account?
+          Already have an account?
 
           <Link
-            to="/signup"
+            to="/"
             className="font-bold ml-2 text-slate-950"
           >
-            Create Account
+            Login
           </Link>
 
         </p>
@@ -86,4 +101,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default Signup;
