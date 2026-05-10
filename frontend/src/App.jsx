@@ -1,5 +1,7 @@
+import Dashboard from "./pages/Dashboard";
+
 function App() {
-  return <div>Traveloop SpeedX</div>;
+  return <Dashboard />;
 }
 
 export default App;
